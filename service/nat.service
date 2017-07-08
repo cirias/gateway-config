@@ -1,0 +1,11 @@
+[Unit]
+Description=setup nat with iptables
+Before=firewalld.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/share/gateway-config/network/nat.sh
+
+[Install]
+WantedBy=multi-user.target

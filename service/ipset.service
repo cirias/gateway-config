@@ -1,0 +1,13 @@
+[Unit]
+Description=ipset persistent rule service
+Before=firewalld.service
+ConditionFileNotEmpty=/etc/sysconfig/ipset
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/sbin/ipset -exist -file /etc/sysconfig/ipset restore
+ExecStop=/sbin/ipset -file /etc/sysconfig/ipset save
+
+[Install]
+WantedBy=multi-user.target

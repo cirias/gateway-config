@@ -1,0 +1,17 @@
+redir:
+  image: easypi/shadowsocks-libev
+  net: host
+  restart: always
+  log_opt:
+    max-size: "30m"
+  command:
+    ss-redir -s <server_address>
+             -p 18883
+             -m rc4-md5
+             -k secret
+             -b 0.0.0.0
+             -l 1080
+             -t 60
+             --fast-open
+             -u
+             -v
